@@ -1,0 +1,29 @@
+
+.message__container {
+    font-family: var(--font-poppins);
+    width: 40em;
+    background: #383F51;
+    border-radius: 10px;
+    text-align: center;
+    color: #cccccc;
+    padding: 3em;
+}
+
+.message__container img {
+    width: 60px;
+}
+
+.message__container h3 {
+    font-size: 30px;
+    margin-bottom: 2em;
+}
+
+.message__container p {
+    font-size: 16px;
+    margin: 2em 0.5em;
+    letter-spacing: 0.5px;
+}
+
+.link__api {
+    color: rgb(202, 145, 255);
+}

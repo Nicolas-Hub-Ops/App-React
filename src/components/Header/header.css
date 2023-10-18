@@ -1,0 +1,7 @@
+.title__page {
+    font-size: 40px;
+    font-family: var(--font-iceland);
+    text-align: left;
+    padding: 0.5em 2em;
+    border-bottom: 1px solid #FFF;
+}

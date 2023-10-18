@@ -1,0 +1,121 @@
+
+
+.search__table {
+    display: flex;
+    justify-content: center;
+    margin: 5em 0 1em 0;
+}
+
+.search__table .search__table {
+    display: block;
+    font-size: 16px;
+    font-family: var(--font-poppins);
+    border: none;
+    border-bottom: 4px solid #8b8b8b;
+    border-radius: 5px;
+    width: 30em;
+    padding: 0.5em 1em;
+}
+.search__table .search__table:focus {
+    outline: none;
+    border-bottom-color: #233EAE;
+}
+
+
+
+.register__table {
+    display: flex;
+    justify-content: right;
+}
+
+.register__table a {
+    margin-right: 10em;
+    font-size: 20px;
+    font-family: var(--font-poppins);
+    color: #FFF;
+    background: #233EAE;
+    padding: 0.5em 2em;
+    border-radius: 30px;
+    transition: all 0.2s;
+}
+.register__table a:hover {
+    opacity: 0.8;
+}
+
+
+
+.table__users {
+    margin-top: 3em;
+}
+
+tr, td {
+    border-bottom: 3px solid #DFDFDF;
+}
+
+th, td {
+    font-family: var(--font-poppins);
+    font-size: 14px;
+    padding: 0.5em 1em;
+    vertical-align: middle;
+}
+
+th {
+    font-weight: bolder;
+}
+
+td {
+    color: #6C757D;
+}
+
+.td__photo:hover, 
+.td__name:hover, 
+.td__email:hover, 
+.td__country:hover, 
+.td__age:hover {
+    background: #EAEAEA;
+}
+
+.td__photo img {
+    width: 50px;
+    border-radius: 100%;
+}
+
+.th__photo, .td__photo {
+    width: 6em;
+}
+
+.th__name, .td__name {
+    width: 20em;
+}
+
+.th__email, .td__email {
+    width: 20em;
+}
+
+.th__country, .td__contry {
+    width: 20em;
+}
+
+.uppercase__state {
+    text-transform: uppercase;
+}
+    
+.th__age, .td__age {
+    width: 5em;
+}
+
+.message__status {
+    color: #233EAE;
+}
+
+.th__icons, .td__icons {
+    width: 5em;
+}
+.td__icons img {
+    width: 30px;
+    transition: all 0.2s;
+}
+.td__icons img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

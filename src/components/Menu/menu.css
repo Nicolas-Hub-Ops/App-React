@@ -1,0 +1,42 @@
+
+.menu__title {
+    font-family: var(--font-iceland);
+    font-size: 40px;
+    font-weight: bolder;
+    color: #ffffff;
+    padding: 1em 0;
+    background:#282e3d;
+    border-bottom: 1px solid #FFF;
+}
+
+
+.menu__options {
+    font-family: var(--font-teko);
+    font-size: 25px;
+    margin-top: 2%;
+    letter-spacing: 3px;
+}
+
+.menu__options a {
+    color: #FFF;
+}
+
+.menu__options .option {
+    margin: 2em 0;
+    padding: 1em;
+    transition: all 0.2s;
+}
+.menu__options .option:hover {
+    background: #181f31;
+    opacity: 0.5;
+}
+
+/*
+.menu__options .option {
+    background: #DC3545;
+}
+*/
+
+.icons {
+    width: 25px;
+}
