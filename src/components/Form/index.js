@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './form.css';
 import styled from 'styled-components';
-import { get, post } from '../Connection';
+import { post } from '../Connection';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -45,10 +45,6 @@ const Form = () => {
     const [ age, setAge ] = useState('');
     
     const navigate = useNavigate();
-
-    const connect = async () => {
-        await get()
-    }
 
     const capture = (event) => {
         event.preventDefault()

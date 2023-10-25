@@ -7,6 +7,11 @@ const get = async () => {
     return res.data;
 }
 
+const getId = async (id) => {
+    const res = await API.get(`/${id}`)
+    return res;
+}
+
 const post = async (data) => {
     const res = await API.post('http://localhost:3001/clientes/register', data)
     return res;
@@ -24,6 +29,7 @@ const del = (id) => {
 
 export {
     get,
+    getId,
     post,
     put,
     del,

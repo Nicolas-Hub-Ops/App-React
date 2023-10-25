@@ -4,10 +4,9 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { del, get } from '../Connection';
 
-import reload from "../../icons/icon-reload.png";
 import exclude from '../../icons/icon-exclude.png';
 import change from '../../icons/icon-change.png';
-
+import close from '../../icons/icon-close-page.png';
 
 const Container = styled.div`
 display: flex;
@@ -21,6 +20,8 @@ const Table = () => {
     const [ clientes, setClientes ] = useState([]);
     const [ filter, setFilter ] = useState('');
     const [ results, setResults ] = useState([]);
+    const [ show, setShow ] = useState();
+    const [ userId, setUserId ] = useState('');
 
     
     const connect = async () => {
@@ -44,6 +45,43 @@ const Table = () => {
         del(id)
         connect()
     }
+
+    const getIdAndOpenPut = async (id) => {
+        setShow(true) 
+        setUserId(id)
+        console.log(userId)
+    }
+
+    const changeUserId = async (id) => {
+        console.log(id)
+    }        
+
+    useEffect(() => {
+        ''
+    }, [show])
+
+    const countries = [
+        "United States",
+        "Canada",
+        "United Kingdom",
+        "Australia",
+        "India",
+        "Germany",
+        "France",
+        "Japan",
+        "China",
+        "Brazil",
+        "Mexico",
+        "Argentina",
+        "South Africa",
+        "Russia",
+        "Egypt",
+        "Saudi Arabia",
+        "New Zealand",
+        "Spain",
+        "Italy",
+      ];
+    
 
     return (
         <div>
@@ -77,13 +115,13 @@ const Table = () => {
                                                     <td>-</td>
                                                   </tr> :
                                 results.map( (cliente) => (
-                                    <tr key={cliente.firstName}>
+                                    <tr key={cliente._id}>
                                         <td className='td__photo'><img src={cliente.foto} alt="foto de perfil"/></td>
                                         <td className='td__name'>{`${cliente.firstName} ${cliente.lastName}`}</td>
                                         <td className='td__email'>{cliente.email}</td>
                                         <td className='td__country'>{`${cliente.country} -`} <span className='uppercase__state'>{`${cliente.state}`}</span></td>
                                         <td className='td__age'>{cliente.age}</td>
-                                        <td className='td__icons'><img src={change} alt="icon alterar"/></td>
+                                        <td className='td__icons'><img src={change} alt="icon alterar" onClick={() => getIdAndOpenPut(cliente._id)}/></td>
                                         <td className='td__icons' onClick={() => {excludeUser (cliente._id); connect()}}><img src={exclude} alt="icon exclude"/></td>
                                     </tr>
                                 ))
@@ -91,6 +129,48 @@ const Table = () => {
                   </tbody>
                 </table>
             </Container>
+
+            {
+                show === true ? (
+                    <div className='form__spacing'>
+                        <form className="form__alterar"
+                            onSubmit={(e) => changeUserId(userId)}>
+                            <div className='spacing__close' onClick={() => setShow(false)}>
+                                <img src={close} alt="icon close page"/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <h2 className="chage__title">Change User</h2> 
+                            </div>
+                            <div className="spacing__changes">
+                                <input placeholder='First Name'/>
+                                <input placeholder='Last Name'/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <input placeholder='Email'/>
+                                <select 
+                                    id='pais' 
+                                    className='select__form'
+                                    >
+                                    {
+                                        countries.map( (country) => (
+                                            <option key={country}>{country}</option>
+                                        ) )
+                                    }
+                                </select>
+                            </div>
+                            <div className='spacing__changes'>
+                                <input placeholder='State' maxLength={2}/>
+                                <input placeholder='Age' type='number'/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <button className='change__user'>Change</button>
+                            </div>
+                        </form>
+                    </div>
+
+                ) : ''
+            }   
+
         </div>
     )
 }

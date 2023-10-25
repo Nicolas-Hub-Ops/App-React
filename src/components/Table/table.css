@@ -119,3 +119,76 @@ td {
     opacity: 0.5;
     cursor: pointer;
 }
+
+.spacing__close {
+    display: flex;
+    justify-content: right;
+}
+.spacing__close img {
+    width: 40px;
+    transition: all 0.2s;
+}
+.spacing__close img:hover {
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+.form__spacing {
+    display: flex;
+    justify-content: center;
+}
+
+.form__alterar {
+    display: block;
+    width: 60em;
+    position: absolute;
+    top: 20em;
+    background: #ededed;
+    padding: 1em 1em 4em 1em;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 20px #a7a7a7;
+}
+
+.spacing__changes {
+    display: flex;
+    justify-content: center;
+}
+
+.chage__title {
+    font-size: 30px;
+    font-family: var(--font-iceland);
+    margin: 1em;
+}
+
+.form__alterar input {
+    font-family: var(--font-poppins);
+    font-size: 16px;
+    margin: 1em;
+    border: none;
+    padding: 1em 4em;
+    border-bottom: 4px solid #000;
+    border-radius: 5px;
+    background: #E6E6E6;
+}
+.form__alterar input:focus {
+    outline: none;
+    border-bottom: 4px solid #939300;
+}
+
+.change__user {
+    display: block;
+    font-family: var(--font-poppins);
+    font-size: 18px;
+    border: none;
+    padding: 1em 5em;
+    background: #808000;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+.change__user:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+.change__user:active {
+    transform: translateY(2px);
+}
