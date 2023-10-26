@@ -38,7 +38,7 @@ const Menu = () => {
                         <p>Register</p>
                     </li>
                 </Link>
-                <Link to='/'>
+                <Link to='https://nicolas-hub-ops.github.io/Portfolio/Home/index.html'>
                     <li className='option'>
                         <img src={portfolio} alt='icon portfolio' className='icons'/>
                         <p>Portfolio</p>
