@@ -50,8 +50,7 @@ const Form = () => {
         event.preventDefault()
         const data = {
             "foto": 'https://static.vecteezy.com/ti/vetor-gratis/p3/3715527-imagem-perfil-icone-masculino-icone-humano-ou-pessoa-sinal-e-simbolo-vetor.jpg',
-            "firstName": first,
-            "lastName": last,
+            "name": `${first} ${last}`,
             "email": email,
             "country": country,
             "state": state,

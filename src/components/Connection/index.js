@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: "http://localhost:3001/clientes" })
+const API = axios.create({ baseURL: "https://projeto-2hcbro0ae-nicolasnilo14-gmailcom.vercel.app/clientes" })
 
 const get = async () => {
     const res = await API.get('/')
@@ -13,17 +13,17 @@ const getId = async (id) => {
 }
 
 const post = async (data) => {
-    const res = await API.post('http://localhost:3001/clientes/register', data)
+    const res = await API.post('https://projeto-2hcbro0ae-nicolasnilo14-gmailcom.vercel.app/clientes/register', data)
     return res;
 }
 
 const put = async (id, data) => {
-    const res = await API.put(`http://localhost:3001/clientes/update/${id}`, data)
+    const res = await API.put(`https://projeto-2hcbro0ae-nicolasnilo14-gmailcom.vercel.app/clientes/update/${id}`, data)
     return res;
 }
 
 const del = (id) => {
-    const res = API.delete(`http://localhost:3001/clientes/delete/${id}`)
+    const res = API.delete(`https://projeto-2hcbro0ae-nicolasnilo14-gmailcom.vercel.app/clientes/delete/${id}`)
     return res;
 }
 

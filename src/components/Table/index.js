@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 import './table.css';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { del, get } from '../Connection';
+import { del, get, put } from '../Connection';
 
 import exclude from '../../icons/icon-exclude.png';
-import change from '../../icons/icon-change.png';
 import close from '../../icons/icon-close-page.png';
 
 const Container = styled.div`
@@ -20,8 +19,11 @@ const Table = () => {
     const [ clientes, setClientes ] = useState([]);
     const [ filter, setFilter ] = useState('');
     const [ results, setResults ] = useState([]);
-    const [ show, setShow ] = useState();
+    const [ show, setShow ] = useState('');
     const [ userId, setUserId ] = useState('');
+
+    const [ data1, setData1 ] = useState('');
+    const [ data2, setData2 ] = useState('');
 
     
     const connect = async () => {
@@ -46,19 +48,34 @@ const Table = () => {
         connect()
     }
 
-    const getIdAndOpenPut = async (id) => {
-        setShow(true) 
-        setUserId(id)
-        console.log(userId)
-    }
-
     const changeUserId = async (id) => {
-        console.log(id)
-    }        
+        if(show === 'name') {
+            const data = {
+                'name': `${data1} ${data2}`
+            }
+            put(id, data)
+        } 
+        if(show === 'email') {
+            const data = {
+                'email': data1
+            }
+            put(id, data)
+        }
+        if(show === 'country') {
+            const data = {
+                'country': data1,
+                'state': data2
+            }
+            put(id, data)
+        }
+        if(show === 'age') {
+            const data = {
+                'age': data1
+            }
+            put(id, data)
+        }
 
-    useEffect(() => {
-        ''
-    }, [show])
+    }        
 
     const countries = [
         "United States",
@@ -101,7 +118,6 @@ const Table = () => {
                             <th className='th__email'>E-mail</th>
                             <th className='th__country'>Country</th>
                             <th className='th__age'>Age</th>
-                            <th className='th__icons'>Change</th>
                             <th className='th__icons'>Exclude</th>
                         </tr>
                     </thead>
@@ -115,13 +131,12 @@ const Table = () => {
                                                     <td>-</td>
                                                   </tr> :
                                 results.map( (cliente) => (
-                                    <tr key={cliente._id}>
+                                    <tr key={cliente._id}  onDoubleClick={(e) => setUserId(cliente._id)}>
                                         <td className='td__photo'><img src={cliente.foto} alt="foto de perfil"/></td>
-                                        <td className='td__name'>{`${cliente.firstName} ${cliente.lastName}`}</td>
-                                        <td className='td__email'>{cliente.email}</td>
-                                        <td className='td__country'>{`${cliente.country} -`} <span className='uppercase__state'>{`${cliente.state}`}</span></td>
-                                        <td className='td__age'>{cliente.age}</td>
-                                        <td className='td__icons'><img src={change} alt="icon alterar" onClick={() => getIdAndOpenPut(cliente._id)}/></td>
+                                        <td className='td__name' onDoubleClick={() => setShow('name')}>{`${cliente.name}`}</td>
+                                        <td className='td__email'onDoubleClick={() => setShow('email')}>{cliente.email}</td>
+                                        <td className='td__country'onDoubleClick={() => setShow('country')}>{`${cliente.country} -`} <span className='uppercase__state'>{`${cliente.state}`}</span></td>
+                                        <td className='td__age'onDoubleClick={() => setShow('age')}>{cliente.age}</td>
                                         <td className='td__icons' onClick={() => {excludeUser (cliente._id); connect()}}><img src={exclude} alt="icon exclude"/></td>
                                     </tr>
                                 ))
@@ -131,25 +146,90 @@ const Table = () => {
             </Container>
 
             {
-                show === true ? (
+                show === 'name' ? (
                     <div className='form__spacing'>
                         <form className="form__alterar"
                             onSubmit={(e) => changeUserId(userId)}>
-                            <div className='spacing__close' onClick={() => setShow(false)}>
+                            <div className='spacing__close' onClick={() => setShow('')}>
                                 <img src={close} alt="icon close page"/>
                             </div>
                             <div className='spacing__changes'>
                                 <h2 className="chage__title">Change User</h2> 
                             </div>
                             <div className="spacing__changes">
-                                <input placeholder='First Name'/>
-                                <input placeholder='Last Name'/>
+                                <input placeholder='First Name' onChange={(e) => setData1(e.target.value)} required/>
+                                <input placeholder='Last Name' onChange={(e) => setData2(e.target.value)} required/>
                             </div>
                             <div className='spacing__changes'>
-                                <input placeholder='Email'/>
+                                <button className='change__user'>Change</button>
+                            </div>
+                        </form>
+                    </div>
+
+                ) : ''
+            }   
+            {
+                show === 'email' ? (
+                    <div className='form__spacing'>
+                        <form className="form__alterar"
+                            onSubmit={(e) => changeUserId(userId)}>
+                            <div className='spacing__close' onClick={() => setShow('')}>
+                                <img src={close} alt="icon close page"/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <h2 className="chage__title">Change User</h2> 
+                            </div>
+                            <div className='spacing__changes'>
+                                <input placeholder='Email' onChange={(e) => setData1(e.target.value)} required/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <button className='change__user'>Change</button>
+                            </div>
+                        </form>
+                    </div>
+
+                ) : ''
+            }   
+            {
+                show === 'age' ? (
+                    <div className='form__spacing'>
+                        <form className="form__alterar"
+                            onSubmit={(e) => changeUserId(userId)}>
+                            <div className='spacing__close' onClick={() => setShow('')}>
+                                <img src={close} alt="icon close page"/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <h2 className="chage__title">Change User</h2> 
+                            </div>
+                            <div className='spacing__changes'>
+                                <input placeholder='Age' type='number' onChange={(e) => setData1(e.target.value)} required/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <button className='change__user'>Change</button>
+                            </div>
+                        </form>
+                    </div>
+
+                ) : ''
+            }   
+            {
+                show === 'country' ? (
+                    <div className='form__spacing'>
+                        <form className="form__alterar"
+                            onSubmit={(e) => changeUserId(userId)}>
+                            <div className='spacing__close' onClick={() => setShow('')}>
+                                <img src={close} alt="icon close page"/>
+                            </div>
+                            <div className='spacing__changes'>
+                                <h2 className="chage__title">Change User</h2> 
+                            </div>
+                            
+                            <div className='spacing__changes'>
                                 <select 
                                     id='pais' 
                                     className='select__form'
+                                    onChange={(e) => setData1(e.target.value)}
+                                    required
                                     >
                                     {
                                         countries.map( (country) => (
@@ -159,8 +239,7 @@ const Table = () => {
                                 </select>
                             </div>
                             <div className='spacing__changes'>
-                                <input placeholder='State' maxLength={2}/>
-                                <input placeholder='Age' type='number'/>
+                                <input placeholder='State' maxLength={2} onChange={(e) => setData2(e.target.value)} required/>
                             </div>
                             <div className='spacing__changes'>
                                 <button className='change__user'>Change</button>
